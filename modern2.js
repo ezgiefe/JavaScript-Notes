@@ -90,11 +90,91 @@ console.log(sayilar.has(1));
 for(let x of sayilar.values()){ 
     console.log(x);
 }
-
+ 
 console.log(sayilar);
 console.log("******************************");
 
 
 //      ********  Class  ********
+
+// Getter ve setter methodları:
+
+class Kisi {
+    constructor(ad, meslek, dogumYili){
+        this.ad = ad;
+        this.meslek = meslek;
+        this.dogumYili = dogumYili;
+        //console.log("nesne oluşturuldu");
+    }
+
+    yasHesapla(){
+        let tarih = new Date().getFullYear();
+        return tarih - this.dogumYili;
+    }
+
+    kendiniTanit(){
+        return `benim adım ${this.ad}`;
+    }
+
+    get ad(){
+        return this._ad;
+    }
+    set ad(value){
+        if(value.length < 3){
+            console.log("ad için çok az karakter girdiniz");
+            return;
+        }
+        this._ad = value;
+    }
+
+    get dogumYili(){
+        return this._dogumYili;
+    }
+    set dogumYili(value){
+        if(value < 1900 || value > new Date().getFullYear()){
+            console.log("tarih bilgisi yanlış");
+            return;
+        }
+        this._dogumYili = value;
+    }
+}
+//                  burda set methodunu kullanmış oluyorum
+let kisi1= new Kisi("ezgi efe", "öğrenci", 2002);
+let kisi2= new Kisi("engin efe", "öğretmen", 1996);
+
+console.log(kisi1.yasHesapla());
+console.log(kisi2.yasHesapla());
+
+console.log(kisi1.ad); //burda da get methodunu kullanıyorum
+console.log("******************************");
+
+
+//      ********  Inheritance  ********
+
+// Kisi sınıfı parent class, Ogrenci sınıfı child class
+class Ogrenci extends Kisi{
+    constructor(ad, meslek, dogumYili, okulNumarasi){
+        super(ad, meslek, dogumYili);
+        this.okulNumarasi = okulNumarasi;
+    }
+
+    dersCalis(){
+        return` ${this.ad} ders çalışıyor. `;
+    }
+
+    kendiniTanit(){  //parent classdakini ezer
+        return `benim adım ${this.ad} ve okul numaram: ${this.okulNumarasi}`;
+    }
+}
+
+let og1 = new Ogrenci("ahmet", "öğrenci", 2001, 123);
+
+console.log(og1);
+console.log(og1.yasHesapla());
+console.log(og1.dersCalis());
+
+console.log(kisi1.kendiniTanit());
+console.log(og1.kendiniTanit());
+
 
 
