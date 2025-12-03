@@ -1,7 +1,7 @@
 var isim= "Ezgi"; //global scope
 var isim= "Ezgi";
-//iki tane aynı var değeri tanımlamakta bir sorun yok
-//fakat bu let için aynı değil
+//iki tane aynı "var" değeri tanımlamakta bir sorun yok
+//fakat bu "let" için aynı değil
 //iki tane aynı let değeri tanımlayamazsın bu hata yapmanın önüne geçer
 
 function yazdir(){
